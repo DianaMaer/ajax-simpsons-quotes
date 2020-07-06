@@ -26,7 +26,7 @@
   <section class="section">
     <div class="container">
       <h1 class="title">Simpsons Quotes</h1>
-      <p>Reload for another quote!</p>
+      <!-- <p>Reload for another quote!</p>-->
       <button id="quote-button">Click for a new quote</button>
       <div class="content" id="simpson">
       </div>
@@ -34,7 +34,7 @@
 
   </section>
 
-  <!-- We need to load axios first! -->
+  <!--We need to load axios first! -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>
   <script>
    
@@ -42,9 +42,9 @@
     
     document.getElementById("quote-button").addEventListener("click",  function fetchGitHubProfileJSON() {
       const url = `https://simpsons-quotes-api.herokuapp.com/quotes`;
-      fetch(url)
+      axios.get(url)
         .then(function(response) {
-          return response.json();
+          return response.data;
         })
         .then(function(quote) {
           const quoteHtml = `
