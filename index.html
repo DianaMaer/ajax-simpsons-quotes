@@ -12,16 +12,23 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <style>
+    #quote-button{
+      margin: 15px 0;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: #8ca0c5;
+    }
   </style>
-</head>
+    
+  </head>
 
 <body>
   <section class="section">
     <div class="container">
-      <h1 class="title">Chuck Norris Jokes</h1>
-      <p>Reload for another joke!</p>
-
-      <div class="content" id="chuck-norris">
+      <h1 class="title">Simpsons Quotes</h1>
+      <p>Reload for another quote!</p>
+      <button id="quote-button">Click for a new quote</button>
+      <div class="content" id="simpson">
       </div>
     </div>
 
@@ -30,7 +37,25 @@
   <!-- We need to load axios first! -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>
   <script>
-
+   
+    
+    
+    document.getElementById("quote-button").addEventListener("click",  function fetchGitHubProfileJSON() {
+      const url = `https://simpsons-quotes-api.herokuapp.com/quotes`;
+      fetch(url)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(quote) {
+          const quoteHtml = `
+            <p><strong>${quote[0].character}</strong></p>
+            <img src="${quote[0].image}" />
+            <p>${quote[0].quote}</p> 
+          `;
+          console.log(quote);
+          document.querySelector('#simpson').innerHTML = quoteHtml;
+        });
+      });
   </script>
 </body>
 
